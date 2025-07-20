@@ -1,17 +1,20 @@
 .footer {
   background-color: $dark-grey;
   padding: 4.8rem 0;
+
   &__text {
     font-size: 1.3rem;
-    color: darken($white-color, 30%);
+    color: $white-color;
+
     a {
       font-size: 1.3rem;
-      color: darken($white-color, 25%);
+      color: $white-color;
       transition: all 0.2s ease-in-out;
       display: inline-block;
+
       &:hover,
       &:active {
-        color: $primary-color;
+        color: $secondary-color;
       }
     }
   }
@@ -20,7 +23,7 @@
     margin: 1rem auto;
     border: 0;
     width: 50%;
-    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
   }
 }
 
@@ -38,22 +41,28 @@
     height: 5rem;
     margin: $default-font-size $default-font-size;
     transition: all ease 0.2s;
+
     i {
       transition: all ease-in-out 0.2s;
     }
+
     &:hover {
       transform: scale(1.1) translateY(-2px);
+
       .fa-twitter {
-        color: #00acee;
+        color: $white-color;
       }
+
       .fa-instagram {
-        color: #c13584;
+        color: $white-color;
       }
+
       .fa-linkedin {
-        color: #4875b4;
+        color: $white-color;
       }
+
       .fa-codepen {
-        color: #212121;
+        color: $white-color;
       }
     }
   }
