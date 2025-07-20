@@ -14,7 +14,7 @@
 
       &:hover,
       &:active {
-        color: $secondary-color;
+        color: #cccccc;
       }
     }
   }
@@ -23,7 +23,7 @@
     margin: 1rem auto;
     border: 0;
     width: 50%;
-    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
   }
 }
 

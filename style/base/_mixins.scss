@@ -67,12 +67,12 @@ ORDER: Base + Typography > Generar Layout + Grid > Page Layout > Components
 
 @mixin supportColorForIE11 {
   // Fall for text-gradient not supported in IE11
-  color: $primary-color;
-  -webkit-text-fill-color: $primary-color; // fallback
+  color: $white-color;
+  -webkit-text-fill-color: $white-color; // fallback
 
   @supports (background-clip: text) or (-webkit-background-clip: text) {
-    color: $primary-color;
-    -webkit-text-fill-color: $primary-color;
+    color: $white-color;
+    -webkit-text-fill-color: $white-color;
   }
 }
 

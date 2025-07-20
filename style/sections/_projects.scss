@@ -1,6 +1,6 @@
 #projects {
   background-color: $light-white;
-  color: $dark-blue-text;
+  color: $white-color;
   margin-top: -15rem;
   padding-top: 15rem;
 
@@ -73,8 +73,8 @@
       }
 
       & .thumbnail {
-        border: 1px solid #000000;
-        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+        border: 1px solid #404040;
+        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
 
         .img-fluid {
           width: 100%;
@@ -85,7 +85,7 @@
 
         @include respond(phone) {
           box-shadow: none;
-          border: 1px solid #000000;
+          border: 1px solid #404040;
           margin-bottom: 3.2rem;
           transform: none;
         }

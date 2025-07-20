@@ -3,9 +3,9 @@
   height: 100vh;
   display: flex;
   align-items: center;
-  background: $white-color;
+  background: $primary-color;
   font-weight: 400;
-  color: $dark-blue-text;
+  color: $white-color;
   padding: 0rem 5.6rem;
   top: 0;
   left: 0;
@@ -24,6 +24,7 @@
   @include respond(tab-port) {
     justify-content: center;
   }
+
   @include respond(phone) {
     padding: 0rem $default-font-size;
   }
@@ -33,6 +34,7 @@
     font-weight: 700;
     margin-bottom: 3.2rem;
     text-align: left;
+
     span {
       margin: 0;
       display: inline-block;
@@ -41,14 +43,17 @@
     @include respond(tab-land) {
       font-size: 4rem;
     }
+
     @include respond(tab-port) {
       font-size: 3.6rem;
       text-align: center;
     }
+
     @include respond(phone) {
       font-size: 3.5rem;
       line-height: 1.5;
     }
+
     @include respond(phone-xs) {
       font-size: 2.8rem;
     }
@@ -70,18 +75,21 @@
     }
   }
 }
+
 .scroll-down-link {
   position: absolute;
   left: 50%;
   bottom: 20px;
   transform: translateX(-50%);
 }
+
 .scroll-down {
   height: 50px;
   width: 30px;
   border: 2px solid #000000;
   border-radius: 50px;
   cursor: pointer;
+
   &::before,
   &::after {
     height: 10px;
@@ -96,6 +104,7 @@
     border-left: none;
     animation: scroll-down 1s ease-in-out infinite;
   }
+
   &::after {
     top: 30%;
     animation-delay: 0.3s;
@@ -106,23 +115,29 @@
   0% {
     opacity: 0;
   }
+
   50% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
 }
+
 @keyframes scroll-down {
   0% {
     opacity: 0;
   }
+
   30% {
     opacity: 1;
   }
+
   60% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
     top: 90%;
