@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <meta name="description" content="Software Engineer crafting Digital Experiences">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">Dat.</a>
+            <div class="nav-links">
+                <a href="#about">about</a>
+                <a href="#experience">experience</a>
+                <a href="#projects">projects</a>
+                <a href="#skills">skills</a>
+                <a href="#contact">contact</a>
+            </div>
+            <div>
+                <a href="/resume.pdf" target="_blank" class="nav-resume">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14,2 14,8 20,8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                    </svg>
+                    Resume
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Timezone Indicator (bottom-left via CSS) -->
+    <div class="nav-timezone">
+        <span class="timezone-label">my time:</span>
+        <span id="live-clock" class="live-clock">--:--:-- EST</span>
+    </div>
+
+    <!-- CMD+K Indicator (bottom-right via CSS) -->
+    <div class="nav-kbd">
+        <span class="kbd-hint">Press</span>
+        <kbd>⌘</kbd>
+        <kbd>K</kbd>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero" class="section hero-section">
+        <div class="container">
+            <h1 class="hero-title" data-text="I'm Dat,<br> a Software Engineer and<br> AI Engineer."></h1>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section" data-animate>
+        <div class="container">
+            <h2 class="section-title scramble-text">About</h2>
+            <div class="about-content">
+                <div class="about-image-wrapper">
+                    <!-- Replace with your profile picture -->
+                    <div class="profile-picture">
+                        <img src="imgs/profilepic.jpeg" alt="Profile Picture">
+                    </div>
+                </div>
+                <div class="about-text">
+                    <p>Software engineer with a focus on AI. When I'm not building things, you'll find me watching games
+                        or diving into films that probably require subtitles.</p>
+                    <p>I like solving problems and working on projects where the tech does something meaningful, not
+                        just
+                        flashy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section experience-section" data-animate>
+        <div class="container">
+            <h2 class="section-title scramble-text">Experience</h2>
+            <div class="experience-grid">
+                <div class="experience-timeline">
+                    <div class="experience-item">
+                        <div class="experience-logo">
+                            <img src="imgs/exp/diijam.png" alt="DIIJAM" onerror="this.style.display='none'">
+                        </div>
+                        <div class="experience-content">
+                            <div class="experience-header">
+                                <h3>Software Engineer Intern</h3>
+                                <span class="experience-date">May 2025 – Aug 2025</span>
+                            </div>
+                            <p class="experience-company">DIIJAM - Electronic Music Streaming Platform</p>
+                            <p class="experience-description">Built subscription interface in Next.js/TypeScript and an
+                                affiliate marketing system in Python/Flask with Gmail API integration for automated
+                                payments.</p>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-logo">
+                            <img src="imgs/exp/nuoc.jpeg" alt="nuoc.solutions" onerror="this.style.display='none'">
+                        </div>
+                        <div class="experience-content">
+                            <div class="experience-header">
+                                <h3>Software Engineering Intern</h3>
+                                <span class="experience-date">May 2024 – May 2025</span>
+                            </div>
+                            <p class="experience-company">nuoc.solutions</p>
+                            <p class="experience-description">Developed water quality monitoring platform using
+                                Next.js/FastAPI/PostgreSQL with LLM-powered natural language analysis for farmers.</p>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-logo">
+                            <img src="imgs/exp/hcl.jpg" alt="HCLTech" onerror="this.style.display='none'">
+                        </div>
+                        <div class="experience-content">
+                            <div class="experience-header">
+                                <h3>Software Engineering Intern</h3>
+                                <span class="experience-date">May 2023 – Aug 2023</span>
+                            </div>
+                            <p class="experience-company">HCLTech</p>
+                            <p class="experience-description">Automated security scans in CI/CD pipelines with Python
+                                and built an anomaly detection pipeline using Isolation Forest and One-Class SVM.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects-section" data-animate>
+        <div class="container-wide">
+            <h2 class="section-title scramble-text">Projects</h2>
+            <div class="projects-layout">
+                <div class="projects-list">
+                    <div class="project-card" data-project="0">
+                        <h3 class="project-title">Crypto AI Assistant</h3>
+                        <p class="project-description">Low-latency, event-driven Java backend using Spring WebFlux and
+                            Redis Streams to process real-time market data at scale. AI helps manage crypto portfolios
+                            and strategies.</p>
+                        <div class="project-image">
+                            <video autoplay loop muted playsinline>
+                                <source src="imgs/project-demo/crypto-demo.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <a href="https://github.com/whenindan/KrakenCryptoPlatform" target="_blank"
+                            class="project-link">View Project →</a>
+                    </div>
+
+                    <div class="project-card" data-project="1">
+                        <h3 class="project-title">AI Travel Agent</h3>
+                        <p class="project-description">AI-powered travel planning system that generates personalized
+                            itineraries using LLM orchestration and multiple travel APIs.</p>
+                        <div class="project-image">
+                            <img src="imgs/projects/travel-ai-image.png" alt="AI Travel Agent">
+                        </div>
+                        <a href="https://github.com/whenindan/AITravelAgent" target="_blank" class="project-link">View
+                            Project →</a>
+                    </div>
+
+                    <div class="project-card" data-project="2">
+                        <h3 class="project-title">Water Quality Monitoring Platform</h3>
+                        <p class="project-description">Real-time water quality monitoring platform with interactive
+                            graphs, full station data access, and an integrated AI analyst for instant data insights.
+                        </p>
+                        <div class="project-image">
+                            <video autoplay loop muted playsinline>
+                                <source src="imgs/project-demo/MapDemo.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <a href="https://github.com/whenindan/Map.ns" target="_blank" class="project-link">View Project
+                            →</a>
+                    </div>
+
+                    <div class="project-card" data-project="3">
+                        <h3 class="project-title">ChessEngine AI</h3>
+                        <p class="project-description">Hybrid chess AI combining traditional search algorithms with a
+                            CNN-Transformer neural network reaching 1200+ ELO.</p>
+                        <div class="project-image">
+                            <img src="imgs/projects/chess-ai-image.png" alt="ChessEngine AI">
+                        </div>
+                        <a href="https://github.com/whenindan/ChessEngine" target="_blank" class="project-link">View
+                            Project →</a>
+                    </div>
+                </div>
+
+                <div class="tech-stack-sidebar">
+                    <h4>Tech Stack</h4>
+                    <div class="tech-pills" id="tech-pills">
+                        <!-- Dynamically populated based on active project -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills-section" data-animate>
+        <div class="container">
+            <h2 class="section-title scramble-text">Skills</h2>
+            <div class="skills-grid">
+                <div class="skills-column">
+                    <h3 class="skills-column-title scramble-text">Programming Languages</h3>
+                    <ul class="skills-list">
+                        <li class="skill-item scramble-text">Python</li>
+                        <li class="skill-item scramble-text">TypeScript</li>
+                        <li class="skill-item scramble-text">JavaScript</li>
+                        <li class="skill-item scramble-text">Java</li>
+                        <li class="skill-item scramble-text">C++</li>
+                        <li class="skill-item scramble-text">SQL</li>
+                        <li class="skill-item scramble-text">HTML/CSS</li>
+                    </ul>
+                </div>
+
+                <div class="skills-column">
+                    <h3 class="skills-column-title scramble-text">Frameworks & Tools</h3>
+                    <ul class="skills-list">
+                        <li class="skill-item scramble-text">Spring Boot</li>
+                        <li class="skill-item scramble-text">Next.js / React</li>
+                        <li class="skill-item scramble-text">Node.js / Express</li>
+                        <li class="skill-item scramble-text">FastAPI / Flask</li>
+                        <li class="skill-item scramble-text">Docker</li>
+                        <li class="skill-item scramble-text">GitHub Actions</li>
+                        <li class="skill-item scramble-text">PostgreSQL</li>
+                        <li class="skill-item scramble-text">AWS / Azure</li>
+                        <li class="skill-item scramble-text">PyTorch</li>
+                        <li class="skill-item scramble-text">LLMs</li>
+                    </ul>
+                </div>
+
+                <div class="skills-column">
+                    <h3 class="skills-column-title scramble-text">Relevant Coursework</h3>
+                    <ul class="skills-list">
+                        <li class="skill-item scramble-text">Data Structures & Algorithms</li>
+                        <li class="skill-item scramble-text">Cloud Computing</li>
+                        <li class="skill-item scramble-text">System Design</li>
+                        <li class="skill-item scramble-text">Computer Architecture</li>
+                        <li class="skill-item scramble-text">Big Data Analysis</li>
+                        <li class="skill-item scramble-text">Object-Oriented Programming</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section" data-animate>
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-links">
+                    <a href="https://github.com/whenindan" target="_blank" class="contact-link">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg>
+                        GitHub
+                    </a>
+                    <a href="https://linkedin.com/in/dat-nguyen294" target="_blank" class="contact-link">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                            </path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                        LinkedIn
+                    </a>
+                    <a href="mailto:nguyentrongdat294@gmail.com" class="contact-link">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        Email
+                    </a>
+                    <a href="/resume.pdf" target="_blank" class="contact-link">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14,2 14,8 20,8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10,9 9,9 8,9"></polyline>
+                        </svg>
+                        Resume
+                    </a>
+                </div>
+                <div class="contact-quote">
+                    <p>“A smooth sea never made a skilled sailor”</p>
+                </div>
+                <div class="footer-text">
+                    <p>© Dat Nguyen 2026</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Command Palette Modal -->
+    <div id="command-palette" class="command-palette">
+        <div class="command-palette-content">
+            <div class="command-search">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input type="text" id="command-input" placeholder="Type a command or search..." autocomplete="off">
+                <button class="close-btn" id="close-palette">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="command-sections">
+                <div class="command-section">
+                    <div class="command-section-title">NAVIGATION</div>
+                    <div class="command-item" data-action="goto-home">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9,22 9,12 15,12 15,22"></polyline>
+                        </svg>
+                        <span>Go to Home</span>
+                    </div>
+                    <div class="command-item" data-action="goto-about">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <span>Go to About</span>
+                    </div>
+                    <div class="command-item" data-action="goto-experience">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                        <span>View Experience</span>
+                    </div>
+                    <div class="command-item" data-action="goto-projects">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        <span>Browse Projects</span>
+                    </div>
+                    <div class="command-item" data-action="goto-skills">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 16v-4"></path>
+                            <path d="M12 8h.01"></path>
+                        </svg>
+                        <span>View Skills</span>
+                    </div>
+                </div>
+
+                <div class="command-section">
+                    <div class="command-section-title">SOCIAL</div>
+                    <div class="command-item" data-action="email">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <span>Send Email</span>
+                    </div>
+                    <div class="command-item" data-action="github">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg>
+                        <span>Open GitHub</span>
+                    </div>
+                    <div class="command-item" data-action="linkedin">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                            </path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                        <span>Open LinkedIn</span>
+                    </div>
+                </div>
+
+                <div class="command-section">
+                    <div class="command-section-title">ACTIONS</div>
+                    <div class="command-item" data-action="resume">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14,2 14,8 20,8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                        </svg>
+                        <span>Download Resume</span>
+                    </div>
+                </div>
+            </div>
+            <div class="command-footer">
+                <span>Navigate with <kbd>↑</kbd> <kbd>↓</kbd> arrows</span>
+                <span>Press <kbd>ESC</kbd> to close</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
