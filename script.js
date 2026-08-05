@@ -437,7 +437,7 @@ const executeCommand = (action) => {
             window.open('https://linkedin.com/in/dat-nguyen294', '_blank');
             break;
         case 'resume':
-            window.open('/resume.pdf', '_blank');
+            window.open('/DatNguyenResumeFullTime.pdf', '_blank');
             break;
     }
 };
