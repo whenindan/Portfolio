@@ -1,41 +1,20 @@
-// ===== PROJECT TECH STACKS =====
-// IMPORTANT: This array must match the number of .project-card elements in index.html
-// Each project card has data-project="N" where N is the array index (0-based)
-// When adding/removing projects, update both index.html AND this array
-const projectTechStacks = [
-    {
-        techs: [
-            { svgFile: 'Java', displayName: 'Java' },
-            { svgFile: 'Spring', displayName: 'Spring Boot' },
-            { svgFile: 'Redis', displayName: 'Redis Streams' },
-            { svgFile: 'Docker', displayName: 'Docker' },
-            { svgFile: 'PostgresSQL', displayName: 'PostgreSQL' }
-        ]
-    },
-    {
-        techs: [
-            { svgFile: 'Next.js', displayName: 'Next.js' },
-            { svgFile: 'Node.js', displayName: 'Node.js' },
-            { svgFile: 'TypeScript', displayName: 'TypeScript' },
-            { svgFile: 'Tailwind-CSS', displayName: 'Tailwind' },
-            { svgFile: 'Vercel', displayName: 'Vercel' },
-            { svgFile: 'Docker', displayName: 'Docker' }
-        ]
-    },
-    {
-        techs: [
-            { svgFile: 'FastAPI', displayName: 'FastAPI' },
-            { svgFile: 'React', displayName: 'React' },
-            { svgFile: 'Docker', displayName: 'Docker' }
-        ]
-    },
-    {
-        techs: [
-            { svgFile: 'PyTorch', displayName: 'PyTorch' },
-            { svgFile: 'Python', displayName: 'Python' }
-        ]
-    }
-];
+// ===== THEME TOGGLE (light default, dark opt-in via localStorage) =====
+(() => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+})();
+
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (!themeToggle) return;
+
+    themeToggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+    });
+});
 
 // ===== TYPEWRITER TEXT ANIMATION =====
 class TypewriterText {
@@ -139,11 +118,7 @@ const observerOptions = {
 const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            // Section is entering viewport
-            entry.target.classList.add('visible');
-            entry.target.classList.remove('exiting');
-
-            // Trigger scramble animations for this section
+            // Trigger scramble animations for this section (one-shot, guarded by hasAnimated)
             const scrambleElements = entry.target.querySelectorAll('.scramble-text');
             scrambleElements.forEach(el => {
                 if (!el.scrambleInstance) {
@@ -162,10 +137,6 @@ const sectionObserver = new IntersectionObserver((entries) => {
                     item.scrambleInstance.animate();
                 }, index * 30);
             });
-        } else {
-            // Section is leaving viewport - add exiting class
-            entry.target.classList.add('exiting');
-            entry.target.classList.remove('visible');
         }
     });
 }, observerOptions);
@@ -192,169 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start live clock
     updateClock();
     setInterval(updateClock, 1000);
-});
-
-// ===== DYNAMIC TECH STACK DISPLAY =====
-let currentActiveProject = -1;
-
-const updateTechStack = () => {
-    const projectCards = document.querySelectorAll('.project-card');
-    const techPillsContainer = document.getElementById('tech-pills');
-
-    if (!techPillsContainer) return;
-
-    // Validation: Warn if HTML and JS are out of sync
-    if (projectCards.length !== projectTechStacks.length) {
-        console.warn(
-            `[Portfolio] Mismatch detected: ${projectCards.length} project cards found in HTML ` +
-            `but ${projectTechStacks.length} entries in projectTechStacks array. ` +
-            `Update script.js to match your HTML project cards.`
-        );
-    }
-
-    let activeProjectIndex = -1;
-    let maxVisibility = 0;
-
-    projectCards.forEach((card, index) => {
-        const rect = card.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        const viewportCenter = viewportHeight / 2;
-
-        // Calculate how much of the card is visible
-        const visibleHeight = Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0);
-        const visibilityRatio = Math.max(0, visibleHeight / rect.height);
-
-        // Only consider projects that are at least partially visible
-        if (visibilityRatio > 0) {
-            // Calculate distance from center of viewport
-            const cardCenter = (rect.top + rect.bottom) / 2;
-            const distanceFromCenter = Math.abs(cardCenter - viewportCenter);
-
-            // Score based on both visibility and distance from center
-            // Prefer projects closer to center
-            const score = visibilityRatio * (1 - (distanceFromCenter / viewportHeight));
-
-            if (score > maxVisibility) {
-                maxVisibility = score;
-                activeProjectIndex = index;
-            }
-        }
-    });
-
-    // Update active state
-    projectCards.forEach((card, index) => {
-        if (index === activeProjectIndex) {
-            card.classList.add('active');
-        } else {
-            card.classList.remove('active');
-        }
-    });
-
-    // Only update tech stack if project changed
-    if (activeProjectIndex !== -1 && activeProjectIndex !== currentActiveProject) {
-        currentActiveProject = activeProjectIndex;
-
-        // Defensive: Check if tech stack exists for this project
-        const techStackData = projectTechStacks[activeProjectIndex];
-        const techStack = techStackData?.techs || [];
-
-        if (!techStackData) {
-            console.warn(
-                `[Portfolio] No tech stack data found for project index ${activeProjectIndex}. ` +
-                `Add an entry to projectTechStacks array in script.js.`
-            );
-        }
-
-        techPillsContainer.innerHTML = '';
-
-        techStack.forEach((tech, index) => {
-            setTimeout(() => {
-                const pill = document.createElement('div');
-                pill.className = 'tech-pill';
-
-                // Use svgFile for the icon path and displayName for text
-                const svgFileName = tech.svgFile || tech;
-                const displayText = tech.displayName || tech;
-
-                const iconPath = `imgs/tech-svg/${svgFileName}.svg`;
-                const icon = document.createElement('img');
-                icon.src = iconPath;
-                icon.alt = displayText;
-                icon.className = 'tech-icon';
-                icon.onerror = () => {
-                    // If icon doesn't load, just show text
-                    pill.innerHTML = '';
-                    pill.textContent = displayText;
-                };
-
-                pill.appendChild(icon);
-
-                const text = document.createElement('span');
-                text.textContent = displayText;
-                pill.appendChild(text);
-
-                techPillsContainer.appendChild(pill);
-            }, index * 50);
-        });
-    }
-};
-
-// Throttle function for performance
-const throttle = (func, delay) => {
-    let lastCall = 0;
-    return function (...args) {
-        const now = Date.now();
-        if (now - lastCall >= delay) {
-            lastCall = now;
-            func(...args);
-        }
-    };
-};
-
-// Listen to scroll for tech stack updates
-window.addEventListener('scroll', throttle(updateTechStack, 150));
-window.addEventListener('resize', throttle(updateTechStack, 200));
-window.addEventListener('load', updateTechStack);
-
-// Initial tech stack update
-document.addEventListener('DOMContentLoaded', () => {
-    // Show first project's tech stack immediately
-    const techPillsContainer = document.getElementById('tech-pills');
-    if (techPillsContainer) {
-        currentActiveProject = 0;
-        const techStack = projectTechStacks[0]?.techs || [];
-
-        techStack.forEach((tech, index) => {
-            setTimeout(() => {
-                const pill = document.createElement('div');
-                pill.className = 'tech-pill';
-
-                // Use svgFile for the icon path and displayName for text
-                const svgFileName = tech.svgFile || tech;
-                const displayText = tech.displayName || tech;
-
-                const iconPath = `imgs/tech-svg/${svgFileName}.svg`;
-                const icon = document.createElement('img');
-                icon.src = iconPath;
-                icon.alt = displayText;
-                icon.className = 'tech-icon';
-                icon.onerror = () => {
-                    pill.innerHTML = '';
-                    pill.textContent = displayText;
-                };
-
-                pill.appendChild(icon);
-
-                const text = document.createElement('span');
-                text.textContent = displayText;
-                pill.appendChild(text);
-
-                techPillsContainer.appendChild(pill);
-            }, index * 50);
-        });
-    }
-
-    setTimeout(updateTechStack, 1000);
 });
 
 // ===== LIVE CLOCK (EST) =====
@@ -416,16 +224,13 @@ const executeCommand = (action) => {
             document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });
             break;
         case 'goto-about':
-            document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });
             break;
         case 'goto-experience':
             document.getElementById('experience').scrollIntoView({ behavior: 'smooth' });
             break;
         case 'goto-projects':
             document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
-            break;
-        case 'goto-skills':
-            document.getElementById('skills').scrollIntoView({ behavior: 'smooth' });
             break;
         case 'email':
             window.location.href = 'mailto:nguyentrongdat294@gmail.com';
