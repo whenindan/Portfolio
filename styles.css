@@ -233,12 +233,6 @@ body {
     margin: 0 auto;
 }
 
-.container-wide {
-    max-width: 1400px;
-    width: 100%;
-    margin: 0 auto;
-}
-
 .section-title {
     font-family: var(--font-primary);
     font-size: 1.75rem;
@@ -332,57 +326,109 @@ body {
 .experience-grid {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-sm);
 }
 
 .experience-timeline {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-sm);
+}
+
+/* the vertical line running through every dot */
+.experience-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0.65rem;
+    bottom: 0.65rem;
+    left: 5px;
+    width: 1px;
+    background: var(--color-border);
 }
 
 .experience-item {
-    padding: var(--spacing-sm) 0;
-    border-bottom: 1px solid var(--color-border);
-    transition: opacity var(--transition-base);
+    position: relative;
+    padding: 1.35rem 0;
     display: flex;
-    gap: var(--spacing-sm);
-    align-items: start;
+    gap: 1.5rem;
+    align-items: flex-start;
+    cursor: default;
+}
+
+.experience-item:first-child {
+    padding-top: 0.5rem;
 }
 
 .experience-item:last-child {
-    border-bottom: none;
+    padding-bottom: 0.5rem;
 }
 
-.experience-item:hover {
-    opacity: 0.75;
-}
-
-.experience-logo {
-    width: 44px;
-    height: 44px;
+.experience-marker {
+    position: relative;
+    z-index: 1;
+    width: 11px;
     flex-shrink: 0;
-    border-radius: 6px;
-    border: 1px solid var(--color-border);
-    padding: 0.4rem;
+    display: flex;
+    justify-content: center;
+    padding-top: 0.5rem;
+}
+
+.experience-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
     background: var(--color-bg);
+    border: 1.5px solid var(--color-border);
+    transition: transform var(--transition-base), background var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.experience-item:hover .experience-dot {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    transform: scale(1.35);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 15%, transparent);
+}
+
+/* logo sits in the same slot as the dot (absolutely positioned, out of flow)
+   so it never touches the line → content spacing; it just swaps in on hover */
+.experience-logo {
+    position: absolute;
+    top: calc(0.5rem + 5.5px);
+    left: 50%;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    padding: 0.3rem;
+    background: var(--color-bg);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.4);
+    transition: opacity var(--transition-base), transform var(--transition-base), border-color var(--transition-base);
 }
 
 .experience-logo img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    border-radius: 50%;
+}
+
+.experience-item:hover .experience-logo {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    border-color: var(--color-accent);
 }
 
 .experience-content {
     flex: 1;
+    min-width: 0;
 }
 
 .experience-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.3rem;
     flex-wrap: wrap;
     gap: 0.5rem;
 }
@@ -391,31 +437,67 @@ body {
     font-family: var(--font-primary);
     font-size: 1.05rem;
     font-weight: 400;
+    color: var(--color-text-muted);
+    transition: color var(--transition-base);
 }
 
 .experience-date {
     font-size: 0.8rem;
     color: var(--color-text-muted);
     font-family: var(--font-tertiary);
+    opacity: 0.7;
+    transition: opacity var(--transition-base);
 }
 
 .experience-company {
     font-size: 0.9rem;
-    color: var(--color-text);
+    color: var(--color-text-muted);
+    opacity: 0.7;
     margin-bottom: 0.5rem;
+    transition: opacity var(--transition-base);
+}
+
+/* grid-rows trick: animates height smoothly without max-height guesswork,
+   so there is no jitter/jump when the description reveals or collapses */
+.experience-description-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows var(--transition-slow);
 }
 
 .experience-description {
     font-size: 0.85rem;
     color: var(--color-text-muted);
     line-height: 1.55;
+    overflow: hidden;
+    min-height: 0;
+}
+
+.experience-item:hover .experience-header h3 {
+    color: var(--color-text);
+}
+
+.experience-item:hover .experience-date,
+.experience-item:hover .experience-company {
+    opacity: 1;
+}
+
+.experience-item:hover .experience-description-wrap {
+    grid-template-rows: 1fr;
 }
 
 /* ===== PROJECTS SECTION ===== */
 .projects-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--spacing-xl);
+    row-gap: var(--spacing-md);
+}
+
+@media (max-width: 700px) {
+    .projects-list {
+        grid-template-columns: 1fr;
+    }
 }
 
 .project-card {
@@ -427,45 +509,20 @@ body {
     opacity: 1;
 }
 
-.project-meta {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 0.75rem;
-    font-size: 0.8rem;
-    color: var(--color-text-muted);
-    font-family: var(--font-tertiary);
-}
-
 .project-title {
     font-family: var(--font-primary);
-    font-size: 1.5rem;
+    font-size: 1.05rem;
     font-weight: 400;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.35rem;
     letter-spacing: -0.02em;
 }
 
 .project-description {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--color-text-muted);
-    line-height: 1.6;
-    margin-bottom: var(--spacing-sm);
+    line-height: 1.55;
+    margin-bottom: 0.4rem;
     width: 100%;
-}
-
-.project-image {
-    width: 100%;
-    aspect-ratio: 16/9;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: var(--spacing-sm);
-    border: 1px solid var(--color-border);
-}
-
-.project-image img,
-.project-image video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
 
 .project-link {
@@ -474,13 +531,17 @@ body {
     gap: 0.5rem;
     color: var(--color-text);
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 400;
     transition: gap var(--transition-fast);
 }
 
 .project-link:hover {
     gap: 1rem;
+}
+
+.project-card:hover .project-description-wrap {
+    grid-template-rows: 1fr;
 }
 
 /* ===== CONTACT SECTION ===== */
@@ -499,21 +560,146 @@ body {
 }
 
 .contact-link {
+    position: relative;
+    font-family: inherit;
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
     color: var(--color-text);
     text-decoration: none;
-    font-size: 0.9rem;
-    padding: 0.7rem 1.1rem;
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
     transition: all var(--transition-fast);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 .contact-link:hover {
     background: var(--color-hover);
+    color: var(--color-accent);
     transform: translateY(-2px);
+}
+
+/*
+ * Email: sits in the row as a fixed 44px circle, same footprint as the other
+ * icons, so it never pushes GitHub/LinkedIn around. The pill that reveals
+ * the address is absolutely positioned on top and grows to the right, so
+ * the expansion is purely visual and doesn't affect layout.
+ */
+.email-link {
+    background: none;
+    overflow: visible;
+}
+
+.email-link:hover {
+    background: none;
+    transform: none;
+}
+
+.email-pill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    height: 44px;
+    width: 44px;
+    border-radius: 999px;
+    background: transparent;
+    overflow: hidden;
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+        background 0.35s ease;
+}
+
+.email-link:hover .email-pill,
+.email-link:focus-visible .email-pill,
+.email-link.copied .email-pill {
+    width: 290px;
+    background: var(--color-hover);
+}
+
+.email-icon-wrap {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.email-icon-wrap svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.email-icon-wrap .icon-copied {
+    opacity: 0;
+    color: var(--color-accent);
+    transform: translate(-50%, -50%) scale(0.5);
+}
+
+.email-link.copied .icon-mail {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+}
+
+.email-link.copied .icon-copied {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.email-label {
+    position: relative;
+    flex: 1 1 auto;
+    height: 44px;
+    padding-right: 1.2rem;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.email-text,
+.copied-text {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.01em;
+    color: var(--color-text);
+    transform: translateY(-50%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.copied-text {
+    opacity: 0;
+    transform: translateY(calc(-50% + 6px));
+}
+
+.email-link.copied .email-text {
+    opacity: 0;
+    transform: translateY(calc(-50% - 6px));
+}
+
+.email-link.copied .copied-text {
+    opacity: 1;
+    transform: translateY(-50%);
 }
 
 .contact-quote {
@@ -531,16 +717,6 @@ body {
 
 .footer-text p {
     margin-bottom: 0.5rem;
-}
-
-.minimal-note a {
-    color: var(--color-text);
-    text-decoration: underline;
-    transition: opacity var(--transition-fast);
-}
-
-.minimal-note a:hover {
-    opacity: 0.7;
 }
 
 /* ===== COMMAND PALETTE ===== */
@@ -708,13 +884,12 @@ body {
 }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 1024px) {
-    .experience-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
 @media (max-width: 768px) {
+    .experience-item {
+        gap: 1rem;
+    }
+
+
     .nav-links {
         display: none;
     }
@@ -741,8 +916,7 @@ body {
     }
 
     .contact-links {
-        flex-direction: column;
-        align-items: stretch;
+        justify-content: center;
     }
 }
 
@@ -764,7 +938,3 @@ body {
     background: var(--color-hover);
 }
 
-/* ===== ANIMATIONS ===== */
-.scrambled {
-    display: inline-block;
-}

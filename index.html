@@ -27,7 +27,7 @@
                 <a href="#contact">contact</a>
             </div>
             <div style="display: flex; align-items: center;">
-                <a href="/DatNguyenResumeFullTime.pdf" target="_blank" class="nav-resume">
+                <a href="/DatNguyenResume.pdf" target="_blank" class="nav-resume">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                         <polyline points="14,2 14,8 20,8"></polyline>
@@ -91,8 +91,9 @@
             <div class="experience-grid">
                 <div class="experience-timeline">
                     <div class="experience-item">
-                        <div class="experience-logo">
-                            <img src="imgs/exp/jack.png" alt="Jack" onerror="this.style.display='none'">
+                        <div class="experience-marker">
+                            <span class="experience-dot"></span>
+                            <div class="experience-logo"><img src="imgs/exp/jack.png" alt="Jack" onerror="this.parentElement.style.display='none'"></div>
                         </div>
                         <div class="experience-content">
                             <div class="experience-header">
@@ -100,15 +101,16 @@
                                 <span class="experience-date">May 2026 – Aug 2026</span>
                             </div>
                             <p class="experience-company">Jack</p>
-                            <p class="experience-description">Built an AI-powered platform that automatically finds
+                            <div class="experience-description-wrap"><p class="experience-description">Built an AI-powered platform that automatically finds
                                 and applies to jobs for 250K+ users, using machine learning to match candidates with
-                                the best-fit roles and auto-generate tailored resumes.</p>
+                                the best-fit roles and auto-generate tailored resumes.</p></div>
                         </div>
                     </div>
 
                     <div class="experience-item">
-                        <div class="experience-logo">
-                            <img src="imgs/exp/diijam.png" alt="DIIJAM" onerror="this.style.display='none'">
+                        <div class="experience-marker">
+                            <span class="experience-dot"></span>
+                            <div class="experience-logo"><img src="imgs/exp/diijam.png" alt="DIIJAM" onerror="this.parentElement.style.display='none'"></div>
                         </div>
                         <div class="experience-content">
                             <div class="experience-header">
@@ -116,15 +118,16 @@
                                 <span class="experience-date">May 2025 – Aug 2025</span>
                             </div>
                             <p class="experience-company">DIIJAM</p>
-                            <p class="experience-description">Built subscription interface in Next.js/TypeScript and an
+                            <div class="experience-description-wrap"><p class="experience-description">Built subscription interface in Next.js/TypeScript and an
                                 affiliate marketing system in Python/Flask with Gmail API integration for automated
-                                payments.</p>
+                                payments.</p></div>
                         </div>
                     </div>
 
                     <div class="experience-item">
-                        <div class="experience-logo">
-                            <img src="imgs/exp/nuoc.jpeg" alt="nuoc.solutions" onerror="this.style.display='none'">
+                        <div class="experience-marker">
+                            <span class="experience-dot"></span>
+                            <div class="experience-logo"><img src="imgs/exp/nuoc.jpeg" alt="nuoc.solutions" onerror="this.parentElement.style.display='none'"></div>
                         </div>
                         <div class="experience-content">
                             <div class="experience-header">
@@ -132,14 +135,15 @@
                                 <span class="experience-date">May 2024 – May 2025</span>
                             </div>
                             <p class="experience-company">nuoc.solutions</p>
-                            <p class="experience-description">Developed water quality monitoring platform using
-                                Next.js/FastAPI/PostgreSQL with LLM-powered natural language analysis for farmers.</p>
+                            <div class="experience-description-wrap"><p class="experience-description">Developed water quality monitoring platform using
+                                Next.js/FastAPI/PostgreSQL with LLM-powered natural language analysis for farmers.</p></div>
                         </div>
                     </div>
 
                     <div class="experience-item">
-                        <div class="experience-logo">
-                            <img src="imgs/exp/hcl.jpg" alt="HCLTech" onerror="this.style.display='none'">
+                        <div class="experience-marker">
+                            <span class="experience-dot"></span>
+                            <div class="experience-logo"><img src="imgs/exp/hcl.jpg" alt="HCLTech" onerror="this.parentElement.style.display='none'"></div>
                         </div>
                         <div class="experience-content">
                             <div class="experience-header">
@@ -147,8 +151,8 @@
                                 <span class="experience-date">May 2023 – Aug 2023</span>
                             </div>
                             <p class="experience-company">HCLTech</p>
-                            <p class="experience-description">Automated security scans in CI/CD pipelines with Python
-                                and built an anomaly detection pipeline using Isolation Forest and One-Class SVM.</p>
+                            <div class="experience-description-wrap"><p class="experience-description">Automated security scans in CI/CD pipelines with Python
+                                and built an anomaly detection pipeline using Isolation Forest and One-Class SVM.</p></div>
                         </div>
                     </div>
                 </div>
@@ -162,35 +166,51 @@
             <h2 class="section-title scramble-text">Projects</h2>
             <div class="projects-list">
                 <div class="project-card" data-project="0">
+                    <h3 class="project-title">ACASO</h3>
+                    <p class="project-description">Founded and led a team of 4 engineers building an AI-powered
+                        B2B SaaS platform for invoice-contract reconciliation, cutting manual review time by 70%
+                        across 5 client companies.</p>
+                    <a href="https://acaso.tech/" target="_blank" class="project-link">View Project →</a>
+                </div>
+
+                <div class="project-card" data-project="1">
+                    <h3 class="project-title">Mailman</h3>
+                    <p class="project-description">RAG-powered email knowledge base that lets users search large
+                        mailbox archives using natural language, processing 100K+ emails at 670+ emails/sec.</p>
+                    <a href="https://demo-mailman.vercel.app/" target="_blank" class="project-link">View Project
+                        →</a>
+                </div>
+
+                <div class="project-card" data-project="2">
                     <h3 class="project-title">Crypto AI Assistant</h3>
-                    <p class="project-description">Low-latency, event-driven Java backend using Spring WebFlux and
-                        Redis Streams to process real-time market data at scale. AI helps manage crypto portfolios
-                        and strategies.</p>
+                    <p class="project-description">Low-latency, event-driven Java backend using Spring WebFlux
+                        and Redis Streams to process real-time market data at scale. AI helps manage crypto
+                        portfolios and strategies.</p>
                     <a href="https://github.com/whenindan/KrakenCryptoPlatform" target="_blank"
                         class="project-link">View Project →</a>
                 </div>
 
-                <div class="project-card" data-project="1">
+                <div class="project-card" data-project="3">
                     <h3 class="project-title">AI Travel Agent</h3>
                     <p class="project-description">AI-powered travel planning system that generates personalized
                         itineraries using LLM orchestration and multiple travel APIs.</p>
-                    <a href="https://github.com/whenindan/AITravelAgent" target="_blank" class="project-link">View
-                        Project →</a>
+                    <a href="https://github.com/whenindan/AITravelAgent" target="_blank"
+                        class="project-link">View Project →</a>
                 </div>
 
-                <div class="project-card" data-project="2">
+                <div class="project-card" data-project="4">
                     <h3 class="project-title">Water Quality Monitoring Platform</h3>
                     <p class="project-description">Real-time water quality monitoring platform with interactive
                         graphs, full station data access, and an integrated AI analyst for instant data insights.
                     </p>
-                    <a href="https://github.com/whenindan/Map.ns" target="_blank" class="project-link">View Project
-                        →</a>
+                    <a href="https://github.com/whenindan/Map.ns" target="_blank" class="project-link">View
+                        Project →</a>
                 </div>
 
-                <div class="project-card" data-project="3">
+                <div class="project-card" data-project="5">
                     <h3 class="project-title">ChessEngine AI</h3>
-                    <p class="project-description">Hybrid chess AI combining traditional search algorithms with a
-                        CNN-Transformer neural network reaching 1200+ ELO.</p>
+                    <p class="project-description">Hybrid chess AI combining traditional search algorithms with
+                        a CNN-Transformer neural network reaching 1200+ ELO.</p>
                     <a href="https://github.com/whenindan/ChessEngine" target="_blank" class="project-link">View
                         Project →</a>
                 </div>
@@ -203,16 +223,18 @@
         <div class="container">
             <div class="contact-content">
                 <div class="contact-links">
-                    <a href="https://github.com/whenindan" target="_blank" class="contact-link">
+                    <a href="https://github.com/whenindan" target="_blank" class="contact-link"
+                        aria-label="GitHub">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
                             <path
                                 d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
                             </path>
                         </svg>
-                        GitHub
+                        <span class="sr-only">GitHub</span>
                     </a>
-                    <a href="https://linkedin.com/in/dat-nguyen294" target="_blank" class="contact-link">
+                    <a href="https://linkedin.com/in/dat-nguyen294" target="_blank" class="contact-link"
+                        aria-label="LinkedIn">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
                             <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
@@ -220,28 +242,29 @@
                             <rect x="2" y="9" width="4" height="12"></rect>
                             <circle cx="4" cy="4" r="2"></circle>
                         </svg>
-                        LinkedIn
+                        <span class="sr-only">LinkedIn</span>
                     </a>
-                    <a href="mailto:nguyentrongdat294@gmail.com" class="contact-link">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                            </path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                        Email
-                    </a>
-                    <a href="/DatNguyenResumeFullTime.pdf" target="_blank" class="contact-link">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <polyline points="14,2 14,8 20,8"></polyline>
-                            <line x1="16" y1="13" x2="8" y2="13"></line>
-                            <line x1="16" y1="17" x2="8" y2="17"></line>
-                            <polyline points="10,9 9,9 8,9"></polyline>
-                        </svg>
-                        Resume
-                    </a>
+                    <button id="email-contact" class="contact-link email-link"
+                        data-email="datng@engineering.upenn.edu" aria-label="Copy email address">
+                        <span class="email-pill">
+                            <span class="email-icon-wrap">
+                                <svg class="icon-mail" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                    </path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                                <svg class="icon-copied" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </span>
+                            <span class="email-label">
+                                <span class="email-text">datng@engineering.upenn.edu</span>
+                                <span class="copied-text">Copied!</span>
+                            </span>
+                        </span>
+                    </button>
                 </div>
                 <div class="contact-quote">
                     <p>“A smooth sea never made a skilled sailor”</p>

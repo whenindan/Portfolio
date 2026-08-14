@@ -126,17 +126,6 @@ const sectionObserver = new IntersectionObserver((entries) => {
                 }
                 el.scrambleInstance.animate();
             });
-
-            // Trigger scramble for skill items with delay
-            const skillItems = entry.target.querySelectorAll('.skill-item');
-            skillItems.forEach((item, index) => {
-                setTimeout(() => {
-                    if (!item.scrambleInstance) {
-                        item.scrambleInstance = new ScrambleText(item, { duration: 600, speed: 15 });
-                    }
-                    item.scrambleInstance.animate();
-                }, index * 30);
-            });
         }
     });
 }, observerOptions);
@@ -233,7 +222,7 @@ const executeCommand = (action) => {
             document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
             break;
         case 'email':
-            window.location.href = 'mailto:nguyentrongdat294@gmail.com';
+            copyEmailToClipboard('datng@engineering.upenn.edu');
             break;
         case 'github':
             window.open('https://github.com/whenindan', '_blank');
@@ -242,7 +231,7 @@ const executeCommand = (action) => {
             window.open('https://linkedin.com/in/dat-nguyen294', '_blank');
             break;
         case 'resume':
-            window.open('/DatNguyenResumeFullTime.pdf', '_blank');
+            window.open('/DatNguyenResume.pdf', '_blank');
             break;
     }
 };
@@ -391,6 +380,53 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('Updated command palette hint to Ctrl');
             }
         }
+    }
+});
+
+// ===== EMAIL: COPY TO CLIPBOARD (better UX than a bare mailto:) =====
+// mailto: links only work when the visitor has a desktop mail client
+// configured, which many people don't. Copying the address lets anyone
+// paste it into whatever they actually use (Gmail web, phone, etc.).
+// `triggerEl` is optional — the command palette calls this without one.
+let copiedResetTimer = null;
+
+const copyEmailToClipboard = async (email, triggerEl) => {
+    try {
+        if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(email);
+        } else {
+            // Fallback for older/non-secure contexts
+            const textarea = document.createElement('textarea');
+            textarea.value = email;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        }
+
+        if (triggerEl) {
+            // Clear any pending revert so rapid clicks don't race each other
+            // and leave the button stuck showing the checkmark.
+            clearTimeout(copiedResetTimer);
+            triggerEl.classList.add('copied');
+            copiedResetTimer = setTimeout(() => {
+                triggerEl.classList.remove('copied');
+            }, 1600);
+        }
+    } catch (err) {
+        // Clipboard API unavailable/denied — fall back to mailto
+        window.location.href = `mailto:${email}`;
+    }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    const emailBtn = document.getElementById('email-contact');
+    if (emailBtn) {
+        emailBtn.addEventListener('click', () => {
+            copyEmailToClipboard(emailBtn.dataset.email, emailBtn);
+        });
     }
 });
 
