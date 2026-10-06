@@ -142,6 +142,19 @@ body {
     letter-spacing: -0.01em;
 }
 
+.school {
+    white-space: nowrap;
+}
+
+.school-logo {
+    /* sized to the cap height so the shield reads as part of the word */
+    height: 0.78em;
+    width: auto;
+    margin: 0 0.18em 0 0.04em;
+    vertical-align: baseline;
+    transform: translateY(0.04em);
+}
+
 /* ===== HERO ROW (title + contact links) ===== */
 .hero-row {
     display: flex;
