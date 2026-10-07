@@ -18,7 +18,7 @@
     --color-border: rgba(255, 255, 255, 0.12);
     --color-hover: rgba(255, 255, 255, 0.08);
     /* ages brand logos like an old engraving: faded, sepia-washed, a touch of soot */
-    --logo-filter: sepia(0.45) saturate(0.55) hue-rotate(-6deg) brightness(0.8) contrast(1.05);
+    --logo-filter: sepia(0.45) saturate(0.55) hue-rotate(-6deg) brightness(0.88) contrast(1.05);
 
     /* Fonts */
     --font-primary: 'Newsreader', Georgia, serif;
@@ -563,7 +563,7 @@ body {
 }
 
 .experience-item:hover .experience-logo img {
-    filter: sepia(0.2) saturate(0.8) brightness(0.92);
+    filter: sepia(0.2) saturate(0.8) brightness(1);
 }
 
 /* ===== PROJECTS SECTION ===== */
