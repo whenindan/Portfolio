@@ -338,6 +338,8 @@ body {
 }
 
 .project-arrow {
+    font-family: "Segoe UI Symbol", "Noto Sans Symbols", "Noto Sans Symbols 2", sans-serif;
+    font-variant-emoji: text;
     display: inline-block;
     font-size: 0.85rem;
     color: var(--color-gold);
